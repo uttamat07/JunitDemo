@@ -6,8 +6,8 @@
 	<property name="testSrc.dir"  location="./test"/>
 	<property name="build.dir" location="./build/classes"/>
 	<property name="testBuild.dir" location="./build/tests"/>
-	<property name="dist.dir" location="./dist"/>
 	<property name="lib.dir" location="./lib" />
+	<property name="report.dir" location="./report" />
 	
 	<!-- set classpath for compile -->
 	<path id="compile.classpath">
@@ -17,15 +17,15 @@
 	</path>
 
 	<target name="clean">
-		<delete dir="${dist.dir}" />
 		<delete dir="${build.dir}" />
 		<delete dir="${testBuild.dir}" />
+		<delete dir="${report.dir}" />
 	</target>
 
 	<target name="init" depends="clean">
 		<mkdir dir="${build.dir}"/>
 		<mkdir dir="${testBuild.dir}" />
-		<mkdir dir="${dist.dir}" />
+		<mkdir dir="${report.dir}" />
 	</target>
 
 	<target name="compile" depends="init">
@@ -56,7 +56,7 @@
 				<pathelement location="${testBuild.dir}"/>
 			</classpath>
 
-			<!--formatter type="xml" /-->
+			<formatter type="xml" />
 			<batchtest todir="${report.dir}">
 			    <fileset dir="${testBuild.dir}">   
 			    	<include name="**/FirstJunitTest.class" />
